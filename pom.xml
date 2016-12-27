@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.incode</groupId>
+        <artifactId>incode-parent</artifactId>
+        <version>1.13.2</version>
+    </parent>
+
+	<groupId>org.incode.estatio</groupId>
+    <artifactId>estatio-canonical</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Estatio Canonical DTOs</name>
+
+    <description>
+        This module defines a set of DTOs that represent a stable API for extracting information from an instance of Estatio.
+    </description>
+
+    <url>https://www.incode.org</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:https://github.com/incodehq/estatio-canonical.git</connection>
+        <developerConnection>scm:git:https://github.com/incodehq/estatio-canonical.git</developerConnection>
+        <url>https://github.com/incodehq/estatio-canonical.git</url>
+    </scm>
+    <developers>
+        <developer>
+            <id>danhaywood</id>
+            <name>Dan Haywood</name>
+            <email>dan@haywood-associates.co.uk</email>
+        </developer>
+        <developer>
+            <id>jcvanderwal</id>
+            <name>Jeroen van der Wal</name>
+            <email>jeroen@stromboli.it</email>
+        </developer>
+    </developers>
+
+    <repositories>
+        <repository>
+            <id>estatio.releases</id>
+            <name>Estatio Releases</name>
+            <url>http://repository-estatio.forge.cloudbees.com/release/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+        </repository>
+
+    </repositories>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                    <version>1.2</version>
+                    <configuration>
+                        <shortRevisionLength>8</shortRevisionLength>
+                        <timestampFormat>{0,date,yyyy-MM-dd HH:mm:ss}</timestampFormat>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>com.github.odavid.maven.plugins</groupId>
+                <artifactId>mixin-maven-plugin</artifactId>
+                <version>0.1-alpha-39</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <mixins>
+                        <mixin>
+                            <groupId>com.danhaywood.mavenmixin</groupId>
+                            <artifactId>enforcerrelaxed</artifactId>
+                        </mixin>
+                        <mixin>
+                            <groupId>com.danhaywood.mavenmixin</groupId>
+                            <artifactId>standard</artifactId>
+                        </mixin>
+                        <mixin>
+                            <groupId>com.danhaywood.mavenmixin</groupId>
+                            <artifactId>sourceandjavadoc</artifactId>
+                        </mixin>
+                    </mixins>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <isis-module-fakedata.version>1.13.0</isis-module-fakedata.version>
+        <javafaker.version>0.5</javafaker.version>
+        <lombok.version>1.16.8</lombok.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.isis.core</groupId>
+            <artifactId>isis-core-schema</artifactId>
+            <version>${isis.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.isisaddons.module.fakedata</groupId>
+            <artifactId>isis-module-fakedata-dom</artifactId>
+            <version>${isis-module-fakedata.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- testing -->
+        <dependency>
+            <groupId>com.danhaywood.mavendeps</groupId>
+            <artifactId>isistesting</artifactId>
+            <version>${mavendeps-isistesting.version}</version>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>schemagen</id>
+            <activation>
+                <property>
+                    <name>schemagen</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>jaxb2-maven-plugin</artifactId>
+                        <version>2.2</version>
+                        <executions>
+                            <execution>
+                                <id>schemagen</id>
+                                <goals>
+                                    <goal>schemagen</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                            </execution>
+                        </executions>
+
+                        <configuration>
+                            <transformSchemas>
+                                <transformSchema>
+                                    <uri>http://canonical.estatio.org/bankmandate/v1/bankmandate.xsd</uri>
+                                    <toPrefix>bankmandate</toPrefix>
+                                    <toFile>bankmandate.xsd</toFile>
+                                </transformSchema>
+                                <transformSchema>
+                                    <uri>http://canonical.estatio.org/financial/v1/bankaccount.xsd</uri>
+                                    <toPrefix>bankaccount</toPrefix>
+                                    <toFile>bankaccount.xsd</toFile>
+                                </transformSchema>
+                                <transformSchema>
+                                    <uri>http://canonical.estatio.org/invoice/v1/invoice.xsd</uri>
+                                    <toPrefix>invoice</toPrefix>
+                                    <toFile>invoice.xsd</toFile>
+                                </transformSchema>
+                                <transformSchema>
+                                    <uri>http://canonical.estatio.org/party/v1/party.xsd</uri>
+                                    <toPrefix>party</toPrefix>
+                                    <toFile>party.xsd</toFile>
+                                </transformSchema>
+                                <transformSchema>
+                                    <uri>http://canonical.estatio.org/communicationchannel/v1/communicationchannel.xsd</uri>
+                                    <toPrefix>communicationchannel</toPrefix>
+                                    <toFile>communicationchannel.xsd</toFile>
+                                </transformSchema>
+                                <transformSchema>
+                                    <uri>http://isis.apache.org/schema/common</uri>
+                                    <toPrefix>isis-common</toPrefix>
+                                    <toFile>isis-common.xsd</toFile>
+                                </transformSchema>
+                            </transformSchemas>
+                        <!--
+                            <includes>
+                                <include>com/estatio/canonical/bankmandate/v1/*</include>
+                            </includes>
+                        -->
+                            <verbose>true</verbose>
+                        </configuration>
+                    </plugin>
+
+                    <!-- TODO: just trying to get these generated XSDs part of the source path so that IntelliJ will pick up without any configuration -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <version>1.10</version>
+                        <executions>
+                            <execution>
+                                <id>add-resource</id>
+                                <goals>
+                                    <goal>add-resource</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                                <configuration>
+                                    <resources>
+                                        <resource>
+                                            <directory>target/generated-resources/schemagen</directory>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>danhaywood-mavenmixin-sonatyperelease</id>
+            <!--
+            this profile is required in order to release this module to Maven Central repo
+            -->
+            <build>
+                <plugins>
+                    <!-- http://central.sonatype.org/pages/apache-maven.html -->
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.2</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                    <!-- http://kohsuke.org/pgp-maven-plugin/secretkey.html instead of maven-gpg-plugin -->
+                    <plugin>
+                        <groupId>org.kohsuke</groupId>
+                        <artifactId>pgp-maven-plugin</artifactId>
+                        <version>1.1</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+
+    </profiles>
+
+</project>

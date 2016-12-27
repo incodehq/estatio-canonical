@@ -1,0 +1,106 @@
+= estatio-canonical
+
+This module defines a set of DTOs that represent a stable API for extracting information from an instance of link:http://github.com/estatio/estatio[Estatio application].
+The data in these DTOs can then be used for various integration scenarios, eg to co-ordinate with a general ledger system.
+
+The http://github.com/isisaddons/isis-module-publishmq[Isis addons' publishmq] module describes one architecture by which these DTOs may be used:
+
+* the Estatio application publishes action invocations/property edits as messages onto an Apache ActiveMQ queue
+
+* an Apache Camel message bus consumes these messages, and routes the message according to the action/property that was invoked/edited
+
+* a processing bean calls back to Estatio via its link:http://isis.apache.org/guides/ugvro.html[REST API], specifying these DTOs as part of the link:http://isis.apache.org/guides/ugvro.html#_ugvro_ro-spec_extensions_content-negotiation[content negotation] (HTTP `Accept` header).
+
+
+
+
+== JAXB SchemaGen
+
+The `schemagen` profile can be used to generate `.xsd` schema files for each of the DTOs.
+
+[WARNING]
+====
+As of 1.0.0 this functionality is currently broken.
+====
+
+
+
+== Change Log
+
+
+* 1.0.0 - initial version (extracted from the ECP-specific version of Estatio).
+
+
+
+
+== Legal Stuff
+
+=== License
+
+[source]
+----
+Copyright 2016~date Dan Haywood
+
+Licensed under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+----
+
+
+
+
+== Maven deploy notes
+
+The module is deployed using Sonatype's OSS support (see
+http://central.sonatype.org/pages/apache-maven.html[user guide] and http://www.danhaywood.com/2013/07/11/deploying-artifacts-to-maven-central-repo/[this blog post]).
+
+The `release.sh` script automates the release process.
+It performs the following:
+
+* performs a sanity check (`mvn clean install -o`) that everything builds ok
+* bumps the `pom.xml` to a specified release version, and tag
+* performs a double check (`mvn clean install -o`) that everything still builds ok
+* releases the code using `mvn clean deploy`
+* bumps the `pom.xml` to a specified release version
+
+For example:
+
+[source]
+----
+sh release.sh 1.0.0 \
+              1.1.0-SNAPSHOT \
+              dan@haywood-associates.co.uk \
+              "this is not really my passphrase"
+----
+
+where
+
+* `$1` is the release version
+* `$2` is the snapshot version
+* `$3` is the email of the secret key (`~/.gnupg/secring.gpg`) to use for signing
+* `$4` is the corresponding passphrase for that secret key.
+
+Other ways of specifying the key and passphrase are available, see the ``pgp-maven-plugin``'s
+http://kohsuke.org/pgp-maven-plugin/secretkey.html[documentation]).
+
+If the script completes successfully, then push changes:
+
+[source]
+----
+git push origin master && git push origin 1.0.0
+----
+
+If the script fails to complete, then identify the cause, perform a `git reset --hard` to start over and fix the issue before trying again.
+Note that in the `dom`'s `pom.xml` the `nexus-staging-maven-plugin` has the `autoReleaseAfterClose` setting set to `true` (to automatically stage, close and the release the repo).
+You may want to set this to `false` if debugging an issue.
+
+According to Sonatype's guide, it takes about 10 minutes to sync, but up to 2 hours to update http://search.maven.org[search].
