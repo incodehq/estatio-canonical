@@ -104,6 +104,7 @@
     </build>
 
     <properties>
+        <isis.version>1.13.2</isis.version>
         <isis-module-fakedata.version>1.13.0</isis-module-fakedata.version>
         <javafaker.version>0.5</javafaker.version>
         <lombok.version>1.16.8</lombok.version>
