@@ -35,7 +35,7 @@ fi
 echo ""
 echo "double-check (mvn clean package -o)"
 echo ""
-mvn clean package -Dskip.incode-parent -o >/dev/null
+mvn clean package -o >/dev/null
 if [ $? != 0 ]; then
     echo "... failed" >&2
     exit 1
