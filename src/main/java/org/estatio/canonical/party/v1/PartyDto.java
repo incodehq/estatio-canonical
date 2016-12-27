@@ -21,15 +21,13 @@ import lombok.Setter;
 @XmlType(name = "", propOrder = {
     "majorVersion",
     "minorVersion",
-//    "self",
+    "self",
     "reference",
-    "name"
-//        ,
-//    "legalPostalAddress"
+    "name",
+    "legalPostalAddress"
 })
 @XmlRootElement(name = "partyDto")
-public class PartyDto implements VersionedDto /* , HasSelfDto*/ {
-
+public class PartyDto implements VersionedDto, HasSelfDto {
 
     @XmlElement(required = true, defaultValue = "1")
     public final String getMajorVersion() {
@@ -41,12 +39,9 @@ public class PartyDto implements VersionedDto /* , HasSelfDto*/ {
         return "0";
     }
 
-    /*
     @XmlElement(required = true)
     @Getter @Setter
     protected OidDto self;
-
-*/
 
     @XmlElement(required = true)
     @Getter @Setter
@@ -56,11 +51,8 @@ public class PartyDto implements VersionedDto /* , HasSelfDto*/ {
     @Getter @Setter
     protected String name;
 
-/*
     @XmlElement(required = false)
     @Getter @Setter
     protected OidDto legalPostalAddress;
-
-*/
 
 }
