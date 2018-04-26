@@ -104,13 +104,13 @@
     </build>
 
     <properties>
-        <isis-module-fakedata.version>1.14.0</isis-module-fakedata.version>
+        <isis-module-fakedata.version>1.16.2</isis-module-fakedata.version>
         <javafaker.version>0.5</javafaker.version>
         <lombok.version>1.16.8</lombok.version>
 
-        <mavendeps-isistesting.version>1.14.0</mavendeps-isistesting.version>
-        <mavendeps-isisintellij.version>1.14.0</mavendeps-isisintellij.version>
-        <mavendeps-isiswebapp.version>1.14.0</mavendeps-isiswebapp.version>
+        <mavendeps-isistesting.version>1.16.2</mavendeps-isistesting.version>
+        <mavendeps-isisintellij.version>1.16.2</mavendeps-isisintellij.version>
+        <mavendeps-isiswebapp.version>1.16.2</mavendeps-isiswebapp.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
