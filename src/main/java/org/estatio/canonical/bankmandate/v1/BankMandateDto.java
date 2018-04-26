@@ -12,7 +12,10 @@ import org.apache.isis.schema.common.v1.OidDto;
 import org.estatio.canonical.HasSelfDto;
 import org.estatio.canonical.VersionedDto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -31,9 +34,10 @@ import lombok.Setter;
         "bankAccount"
 })
 @XmlRootElement(name = "bankMandateDto")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class BankMandateDto implements VersionedDto, HasSelfDto {
-
-    public BankMandateDto() {}
 
     @XmlElement(required = true, defaultValue = "1")
     public final String getMajorVersion() {

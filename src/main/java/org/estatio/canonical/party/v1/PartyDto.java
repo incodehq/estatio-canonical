@@ -11,7 +11,10 @@ import org.apache.isis.schema.common.v1.OidDto;
 import org.estatio.canonical.HasSelfDto;
 import org.estatio.canonical.VersionedDto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -27,6 +30,9 @@ import lombok.Setter;
     "legalPostalAddress"
 })
 @XmlRootElement(name = "partyDto")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PartyDto implements VersionedDto, HasSelfDto {
 
     @XmlElement(required = true, defaultValue = "1")

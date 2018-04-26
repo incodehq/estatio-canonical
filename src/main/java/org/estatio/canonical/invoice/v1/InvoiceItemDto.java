@@ -8,7 +8,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -39,6 +42,9 @@ import lombok.Setter;
         "fixedAssetExternalReference", // of the unit
         "occupancyBrand"
 })
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class InvoiceItemDto {
 
     //Charge

@@ -18,7 +18,10 @@ import org.apache.isis.schema.common.v1.OidDto;
 import org.estatio.canonical.HasSelfDto;
 import org.estatio.canonical.VersionedDto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -49,6 +52,9 @@ import lombok.Setter;
         "grossAmount"
 })
 @XmlRootElement(name = "invoiceDto")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class InvoiceDto implements VersionedDto, HasSelfDto {
 
     @XmlElement(required = true, defaultValue = "1")

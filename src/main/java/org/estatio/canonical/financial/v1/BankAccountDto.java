@@ -11,7 +11,10 @@ import org.apache.isis.schema.common.v1.OidDto;
 import org.estatio.canonical.HasSelfDto;
 import org.estatio.canonical.VersionedDto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -35,9 +38,10 @@ import lombok.Setter;
     "nationalCheckCode"
 })
 @XmlRootElement(name = "bankAccountDto")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class BankAccountDto implements VersionedDto, HasSelfDto {
-
-    public BankAccountDto() {}
 
     @XmlElement(required = true, defaultValue = "1")
     public final String getMajorVersion() {

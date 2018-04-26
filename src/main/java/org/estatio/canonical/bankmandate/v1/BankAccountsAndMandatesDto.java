@@ -12,7 +12,10 @@ import javax.xml.bind.annotation.XmlType;
 import org.estatio.canonical.VersionedDto;
 import org.estatio.canonical.financial.v1.BankAccountDto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -26,6 +29,9 @@ import lombok.Setter;
     "bankMandates"
 })
 @XmlRootElement(name = "bankAccountsAndMandatesDto")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class BankAccountsAndMandatesDto implements VersionedDto {
 
     @XmlElement(required = true, defaultValue = "1")
