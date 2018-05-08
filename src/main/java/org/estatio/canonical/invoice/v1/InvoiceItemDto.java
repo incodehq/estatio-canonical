@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -19,6 +20,7 @@ import lombok.Setter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+        "invoiceItemId",
         "chargeReference",
         "chargeName",
         "chargeDescription",
@@ -40,12 +42,16 @@ import lombok.Setter;
         "agreementReference",
         "fixedAssetReference", // of the unit
         "fixedAssetExternalReference", // of the unit
-        "occupancyBrand"
+        "occupancyBrand",
+        "adjustment"
 })
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class InvoiceItemDto {
+
+    @Getter @Setter
+    protected String invoiceItemId;
 
     //Charge
 
@@ -129,4 +135,7 @@ public class InvoiceItemDto {
 
     @Getter @Setter
     protected String occupancyBrand;
+
+    @Getter @Setter
+    protected boolean adjustment;
 }
