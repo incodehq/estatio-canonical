@@ -4,10 +4,13 @@ import java.math.BigDecimal;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import org.apache.isis.schema.common.v1.OidDto;
+
+import org.estatio.canonical.HasSelfDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +23,6 @@ import lombok.Setter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "invoiceItemId",
         "chargeReference",
         "chargeName",
         "chargeDescription",
@@ -48,10 +50,11 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class InvoiceItemDto {
+public class InvoiceItemDto implements HasSelfDto {
 
+    @XmlElement(required = true)
     @Getter @Setter
-    protected String invoiceItemId;
+    protected OidDto self;
 
     //Charge
 
