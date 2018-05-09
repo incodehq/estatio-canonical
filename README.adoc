@@ -78,8 +78,8 @@ For example:
 
 [source]
 ----
-sh release.sh 1.2.0 \
-              1.3.0-SNAPSHOT \
+sh release.sh 2.0.0 \
+              2.1.0-SNAPSHOT \
               dan@haywood-associates.co.uk \
               "this is not really my passphrase"
 ----

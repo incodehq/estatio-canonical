@@ -1,4 +1,4 @@
-package org.estatio.canonical.financial.bankaccount.v1;
+package org.estatio.canonical.financial.bankaccount.v2;
 
 import javax.xml.bind.JAXBContext;
 
@@ -12,7 +12,7 @@ import org.apache.isis.schema.common.v1.OidDto;
 import org.isisaddons.module.fakedata.dom.FakeDataService;
 
 import org.estatio.canonical.JaxbMarshaller;
-import org.estatio.canonical.financial.v1.BankAccountDto;
+import org.estatio.canonical.financial.v2.BankAccountDto;
 
 public class BankAccountDto_Test {
 
