@@ -23,6 +23,7 @@ import lombok.Setter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+        "self",
         "chargeReference",
         "chargeName",
         "chargeDescription",
