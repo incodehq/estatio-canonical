@@ -14,20 +14,12 @@ The http://github.com/isisaddons/isis-module-publishmq[Isis addons' publishmq] m
 
 
 
-== JAXB SchemaGen
-
-The `schemagen` profile can be used to generate `.xsd` schema files for each of the DTOs.
-
-[WARNING]
-====
-As of 1.0.0 this functionality is currently broken.
-====
 
 
 
 == Change Log
 
-
+* 2.0.0-M1 - extends 1.x schemas with some new attributes; adds 2.0 schemas (source compatible with 1.x) that are generated from XSDs.
 * 1.2.0 - updated for Apache Isis 1.16.2, adds Lombok builder support
 * 1.1.0 - updated for Apache Isis 1.14.0
 * 1.0.0 - initial version (extracted from the ECP-specific version of Estatio).
@@ -78,8 +70,8 @@ For example:
 
 [source]
 ----
-sh release.sh 2.0.0 \
-              2.1.0-SNAPSHOT \
+sh release.sh 2.0.0-M1 \
+              2.0.0-SNAPSHOT \
               dan@haywood-associates.co.uk \
               "this is not really my passphrase"
 ----
@@ -98,7 +90,7 @@ If the script completes successfully, then push changes:
 
 [source]
 ----
-git push origin master && git push origin 1.2.0
+git push origin master && git push origin 2.0.0-M1
 ----
 
 If the script fails to complete, then identify the cause, perform a `git reset --hard` to start over and fix the issue before trying again.

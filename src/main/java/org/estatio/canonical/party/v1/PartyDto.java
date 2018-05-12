@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 
 import org.apache.isis.schema.common.v1.OidDto;
 
+import org.estatio.canonical.HasAtPathDto;
 import org.estatio.canonical.HasSelfDto;
 import org.estatio.canonical.VersionedDto;
 
@@ -25,6 +26,7 @@ import lombok.Setter;
     "majorVersion",
     "minorVersion",
     "self",
+    "atPath",
     "reference",
     "name",
     "legalPostalAddress"
@@ -33,7 +35,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PartyDto implements VersionedDto, HasSelfDto {
+public class PartyDto implements VersionedDto, HasSelfDto, HasAtPathDto {
 
     @XmlElement(required = true, defaultValue = "1")
     public final String getMajorVersion() {
@@ -48,6 +50,10 @@ public class PartyDto implements VersionedDto, HasSelfDto {
     @XmlElement(required = true)
     @Getter @Setter
     protected OidDto self;
+
+    @XmlElement(required = true)
+    @Getter @Setter
+    protected String atPath;
 
     @XmlElement(required = true)
     @Getter @Setter

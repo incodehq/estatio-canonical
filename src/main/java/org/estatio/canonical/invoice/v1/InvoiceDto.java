@@ -15,6 +15,7 @@ import com.google.common.collect.Lists;
 
 import org.apache.isis.schema.common.v1.OidDto;
 
+import org.estatio.canonical.HasAtPathDto;
 import org.estatio.canonical.HasSelfDto;
 import org.estatio.canonical.VersionedDto;
 
@@ -55,7 +56,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class InvoiceDto implements VersionedDto, HasSelfDto {
+public class InvoiceDto implements VersionedDto, HasSelfDto, HasAtPathDto {
 
     @XmlElement(required = true, defaultValue = "1")
     public final String getMajorVersion() {

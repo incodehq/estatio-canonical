@@ -63,7 +63,7 @@
             </xs:element>
             <xs:element name="atPath" type="xs:string" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Application tenancy path for this invoice instance in Estatio.
+                    <xs:documentation>Application tenancy path for this invoice in Estatio.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -152,15 +152,15 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="grossAmount" type="xs:decimal" minOccurs="1" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>Total gross amount of all invoice items of this invoice.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
             <xs:element name="vatAmount" type="xs:decimal" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Total VAT amount of all invoice items of this invoice.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="grossAmount" type="xs:decimal" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Total gross amount of all invoice items of this invoice.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -169,7 +169,7 @@
 
     <xs:complexType name="invoiceItems">
         <xs:sequence>
-            <xs:element name="bankAccount" type="invoiceItemType" minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="item" type="invoiceItemType" minOccurs="0" maxOccurs="unbounded">
             </xs:element>
         </xs:sequence>
     </xs:complexType>

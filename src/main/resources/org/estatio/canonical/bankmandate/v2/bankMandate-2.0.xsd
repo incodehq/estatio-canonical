@@ -55,21 +55,15 @@
 
     <xs:complexType name="bankMandateType">
         <xs:sequence>
-            <xs:element name="majorVersion" type="xs:string" minOccurs="1" maxOccurs="1" default="1">
-                <xs:annotation>
-                    <xs:documentation>The major version of the schema that an XML instance was created using.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="minorVersion" type="xs:string" minOccurs="1" maxOccurs="1" default="0">
-                <xs:annotation>
-                    <xs:documentation>The minor version of the schema that an XML instance was created using.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
             <xs:element name="self" type="com:oidDto" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>System identifier for this bank mandate instance in Estatio.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="atPath" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Application tenancy path for this bank mandate in Estatio.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
