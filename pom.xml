@@ -311,10 +311,51 @@
 
         <!-- TODO: move up to incode-build -->
         <profile>
+            <id>incode-cloud-maven</id>
+            <activation>
+                <property>
+                    <name>!skip.incode-cloud-maven</name>
+                </property>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>incode-cloud-maven</id>
+                    <url>https://repo.incode.cloud/repository/maven/</url>
+                    <name>Incode Cloud (maven)</name>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>fail</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>fail</checksumPolicy>
+                    </snapshots>
+                    <layout>default</layout>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>incode-cloud-maven</id>
+                    <name>Incode Cloud (maven)</name>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>fail</checksumPolicy>
+                    </releases>
+                    <url>https://repo.incode.cloud/repository/maven/</url>
+                    <layout>default</layout>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+
+        <!-- TODO: move up to incode-build -->
+        <profile>
             <id>incode-cloud-maven-dev</id>
             <activation>
                 <property>
-                    <name>!skip.incode-cloud-maven-dev</name>
+                    <name>incode-cloud-maven-dev</name>
                 </property>
             </activation>
             <repositories>
@@ -355,7 +396,7 @@
             <id>incode-cloud-maven-test</id>
             <activation>
                 <property>
-                    <name>!skip.incode-cloud-maven-test</name>
+                    <name>incode-cloud-maven-test</name>
                 </property>
             </activation>
             <repositories>
@@ -396,7 +437,7 @@
             <id>incode-cloud-maven-prod</id>
             <activation>
                 <property>
-                    <name>!skip.incode-cloud-maven-prod</name>
+                    <name>incode-cloud-maven-prod</name>
                 </property>
             </activation>
             <repositories>
