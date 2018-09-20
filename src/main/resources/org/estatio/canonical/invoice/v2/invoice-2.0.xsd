@@ -178,7 +178,7 @@
         <xs:sequence>
             <xs:element name="self" type="com:oidDto" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>System identifier for this bank account instance in Estatio.
+                    <xs:documentation>System identifier for this invoice item instance in Estatio.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>

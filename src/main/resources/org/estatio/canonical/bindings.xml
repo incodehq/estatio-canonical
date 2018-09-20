@@ -25,12 +25,18 @@
                xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd
 			  http://jaxb2-commons.dev.java.net/namespace-prefix http://java.net/projects/jaxb2-commons/sources/svn/content/namespace-prefix/trunk/src/main/resources/prefix-namespace-schema.xsd"
 >
+
+    <jaxb:bindings schemaLocation="common/v2/common-2.0.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.estatio.canonical.common.v2"/>
+        </jaxb:schemaBindings>
+        <jaxb:bindings>
+            <namespace:prefix name="common" />
+        </jaxb:bindings>
+    </jaxb:bindings>
+
     <jaxb:bindings schemaLocation="party/v2/party-2.0.xsd">
         <jaxb:schemaBindings>
-            <!--
-            we don't include the minor version, because the
-            generated Java class will be backwards compatible
-            -->
             <jaxb:package name="org.estatio.canonical.party.v2"/>
         </jaxb:schemaBindings>
         <jaxb:bindings>
@@ -80,6 +86,34 @@
         </jaxb:schemaBindings>
         <jaxb:bindings>
             <namespace:prefix name="invoice" />
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="project/v2/project-2.0.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.estatio.canonical.project.v2"/>
+        </jaxb:schemaBindings>
+        <jaxb:bindings>
+            <namespace:prefix name="project" />
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="order/v2/order-2.0.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.estatio.canonical.order.v2"/>
+        </jaxb:schemaBindings>
+        <jaxb:bindings>
+            <namespace:prefix name="order" />
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+
+    <jaxb:bindings schemaLocation="incominginvoice/v2/incominginvoice-2.0.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.estatio.canonical.incominginvoice.v2"/>
+        </jaxb:schemaBindings>
+        <jaxb:bindings>
+            <namespace:prefix name="incominginvoice" />
         </jaxb:bindings>
     </jaxb:bindings>
 

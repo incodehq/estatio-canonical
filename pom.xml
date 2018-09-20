@@ -200,12 +200,16 @@
                                 <configuration>
                                     <schemaDirectory>src/main/resources/org/estatio/canonical</schemaDirectory>
                                     <schemaIncludes>
+                                        <schemaInclude>common/v2/common-2.0.xsd</schemaInclude>
                                         <schemaInclude>party/v2/party-2.0.xsd</schemaInclude>
                                         <schemaInclude>communicationchannel/v2/postalAddress-2.0.xsd</schemaInclude>
                                         <schemaInclude>bankmandate/v2/bankMandate-2.0.xsd</schemaInclude>
                                         <schemaInclude>financial/v2/bankAccount-2.0.xsd</schemaInclude>
                                         <schemaInclude>bankaccountsandmandates/v2/bankAccountsAndMandates-2.0.xsd</schemaInclude>
                                         <schemaInclude>invoice/v2/invoice-2.0.xsd</schemaInclude>
+                                        <schemaInclude>project/v2/project-2.0.xsd</schemaInclude>
+                                        <schemaInclude>order/v2/order-2.0.xsd</schemaInclude>
+                                        <schemaInclude>incominginvoice/v2/incominginvoice-2.0.xsd</schemaInclude>
                                     </schemaIncludes>
                                     <bindingDirectory>src/main/resources/org/estatio/canonical</bindingDirectory>
                                     <bindingIncludes>

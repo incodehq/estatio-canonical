@@ -1,4 +1,5 @@
 *~
+.flattened-pom.xml
 *.swp
 *.class
 bin/

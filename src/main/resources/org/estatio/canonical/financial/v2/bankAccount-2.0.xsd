@@ -136,4 +136,14 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:simpleType name="paymentMethod">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DIRECT_DEBIT"/>
+            <xs:enumeration value="BANK_TRANSFER"/>
+            <xs:enumeration value="CASH"/>
+            <xs:enumeration value="CHEQUE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
 </xs:schema>
