@@ -117,5 +117,14 @@
         </jaxb:bindings>
     </jaxb:bindings>
 
+    <jaxb:bindings schemaLocation="documents/v2/documents-2.0.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.estatio.canonical.documents.v2"/>
+        </jaxb:schemaBindings>
+        <jaxb:bindings>
+            <namespace:prefix name="documents" />
+        </jaxb:bindings>
+    </jaxb:bindings>
+
 
 </jaxb:bindings>

@@ -84,13 +84,6 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
                 <version>1.0.0</version>
-                <configuration>
-                    <updatePomFile>true</updatePomFile>
-                    <pomElements>
-                        <dependencyManagement>resolve</dependencyManagement>
-                        <dependencies>resolve</dependencies>
-                    </pomElements>
-                </configuration>
                 <executions>
                     <execution>
                         <id>flatten</id>
@@ -98,6 +91,21 @@
                         <goals>
                             <goal>flatten</goal>
                         </goals>
+                        <configuration>
+                            <updatePomFile>true</updatePomFile>
+                            <pomElements>
+                                <parent>resolve</parent>
+                                <name>resolve</name>
+                                <description>resolve</description>
+                                <url>resolve</url>
+                                <scm>resolve</scm>
+                                <developers>resolve</developers>
+                                <properties>resolve</properties>
+                                <dependencyManagement>resolve</dependencyManagement>
+                                <dependencies>resolve</dependencies>
+                                <profiles>resolve</profiles>
+                            </pomElements>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>flatten.clean</id>
@@ -210,6 +218,7 @@
                                         <schemaInclude>project/v2/project-2.0.xsd</schemaInclude>
                                         <schemaInclude>order/v2/order-2.0.xsd</schemaInclude>
                                         <schemaInclude>incominginvoice/v2/incominginvoice-2.0.xsd</schemaInclude>
+                                        <schemaInclude>documents/v2/documents-2.0.xsd</schemaInclude>
                                     </schemaIncludes>
                                     <bindingDirectory>src/main/resources/org/estatio/canonical</bindingDirectory>
                                     <bindingIncludes>
