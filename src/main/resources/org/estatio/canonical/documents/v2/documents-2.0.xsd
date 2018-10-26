@@ -79,7 +79,7 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="sort" type="documentSort" minOccurs="1" maxOccurs="1">
+            <xs:element name="nature" type="documentNature" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Whether this is a blob or a clob.
                     </xs:documentation>
@@ -97,9 +97,9 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="blobBytesUrlEncoded" type="xs:string" minOccurs="0" maxOccurs="1">
+            <xs:element name="blobBytesBase64Encoded" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>If this document is a blob, then the bytes of the blob, URL encoded.
+                    <xs:documentation>If this document is a blob, then the bytes of the blob, base64 encoded.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -112,7 +112,7 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:simpleType name="documentSort">
+    <xs:simpleType name="documentNature">
         <xs:restriction base="xs:string">
             <xs:enumeration value="BLOB"/>
             <xs:enumeration value="CLOB"/>
