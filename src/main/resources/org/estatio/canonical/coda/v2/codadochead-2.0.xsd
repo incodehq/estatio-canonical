@@ -17,22 +17,25 @@
   specific language governing permissions and limitations
   under the License.
 -->
-<xs:schema targetNamespace="http://canonical.estatio.org/order/v2"
+<xs:schema targetNamespace="http://canonical.estatio.org/coda/v2"
            elementFormDefault="qualified"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns="http://canonical.estatio.org/order/v2"
+           xmlns:cancom="http://canonical.estatio.org/common/v2"
+           xmlns="http://canonical.estatio.org/coda/v2"
            xmlns:com="http://isis.apache.org/schema/common"
 >
     <xs:import namespace="http://isis.apache.org/schema/common" schemaLocation="http://isis.apache.org/schema/common/common.xsd"/>
+    <xs:import namespace="http://canonical.estatio.org/common/v2" schemaLocation="../../common/v2/common-2.0.xsd"/>
+    <xs:import namespace="http://canonical.estatio.org/order/v2" schemaLocation="../../order/v2/order-2.0.xsd"/>
 
-    <xs:element name="orderDto">
+    <xs:element name="codaDocHeadDto">
         <xs:annotation>
             <xs:documentation>Represents v2.0 of this schema (as per majorVersion.minorVersion @default attribute, below).
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
             <xs:complexContent>
-                <xs:extension base="orderType">
+                <xs:extension base="codaDocHeadType">
                     <xs:sequence>
                         <xs:element name="majorVersion" type="xs:string" minOccurs="1" maxOccurs="1" default="2">
                             <xs:annotation>
@@ -52,59 +55,36 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="orderType">
+    <xs:complexType name="codaDocHeadType">
         <xs:sequence>
             <xs:element name="self" type="com:oidDto" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>System identifier for this project instance in Estatio.
+                    <xs:documentation>System identifier for this CodaDocHead instance in Estatio.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="codaDocKey" type="cancom:codaDocKey" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The Coda cmpcode/doccode/docnum tuple that identifies this document/transaction.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="codaPeriod" type="cancom:codaPeriod" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Date that this transaction is booked to in Coda, if known.
 
-                        May not be specified because the DTO might be created as result of information held in other
-                        system (eg Coda), for the purpose of being upserted into Estatio.
+                        Note that this is not the same format string as the period property on the IncomingInvoice
+                        entity, but it encodes the same information.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="orderNumber" type="xs:string" minOccurs="1" maxOccurs="1">
+            <xs:element name="incomingInvoice" type="com:oidDto" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Order number, as assigned by ECP, for this incoming order.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="sellerOrderReference" type="xs:string" minOccurs="1" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>The seller's (aka supplier's) own reference for this order.
-
-                        This may be the same as the order number when the order is actually a proposal that is
-                        created by ECP for suppliers to fulfill, as may be the case in some countries.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="atPath" type="xs:string" minOccurs="1" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>Application tenancy path for this party in Estatio.
+                    <xs:documentation>Identity of the corresponding Estatio Incoming Invoice (if any)
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
     </xs:complexType>
-
-    <xs:simpleType name="incomingInvoiceTypeType">
-        <xs:annotation>
-            <xs:documentation>
-                In the order schema rather than incoming invoice because is shared by both.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="CAPEX"/>
-            <xs:enumeration value="ITA_RECOVERABLE"/>
-            <xs:enumeration value="ITA_MANAGEMENT_COSTS"/>
-            <xs:enumeration value="FRA_PROPERTY_EXPENSES"/>
-            <xs:enumeration value="FRA_SERVICE_CHARGES"/>
-            <xs:enumeration value="FRA_LOCAL_EXPENSES"/>
-            <xs:enumeration value="FRA_CORPORATE_EXPENSES"/>
-            <xs:enumeration value="FRA_TANGIBLE_FIXED_ASSET"/>
-            <xs:enumeration value="FRA_INTERCOMPANY"/>
-            <xs:enumeration value="FRA_RE_INVOICING"/>
-        </xs:restriction>
-    </xs:simpleType>
 
 </xs:schema>

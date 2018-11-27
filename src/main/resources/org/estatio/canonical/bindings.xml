@@ -89,6 +89,15 @@
         </jaxb:bindings>
     </jaxb:bindings>
 
+    <jaxb:bindings schemaLocation="coda/v2/codadochead-2.0.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.estatio.canonical.coda.v2"/>
+        </jaxb:schemaBindings>
+        <jaxb:bindings>
+            <namespace:prefix name="coda" />
+        </jaxb:bindings>
+    </jaxb:bindings>
+
     <jaxb:bindings schemaLocation="project/v2/project-2.0.xsd">
         <jaxb:schemaBindings>
             <jaxb:package name="org.estatio.canonical.project.v2"/>

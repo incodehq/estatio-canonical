@@ -40,9 +40,9 @@
                     <xs:documentation>Document code, eg &quot;FR-GEN&quot;</xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="docNum" type="xs:int">
+            <xs:element name="docNum" type="xs:string">
                 <xs:annotation>
-                    <xs:documentation>Document number</xs:documentation>
+                    <xs:documentation>Document number, eg "       12345"</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>

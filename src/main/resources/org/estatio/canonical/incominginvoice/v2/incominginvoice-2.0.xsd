@@ -62,32 +62,20 @@
     <xs:complexType name="incomingInvoiceType">
         <xs:annotation>
             <xs:documentation>
-                This is modelled on the required information to create an IncomingInvoice and to add an item to it.
+                For &quot;exporting&quot; an already-persistent incoming invoice.
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="self" type="com:oidDto" minOccurs="0" maxOccurs="1">
+            <xs:element name="self" type="com:oidDto" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>
-                        System identifier for this incoming invoice instance in Estatio.
-
-                        Optional because the DTO may be created from info in Coda, then uploaded to Estatio.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="codaIdentifier" type="cancom:codaDocKey" minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>
-                        The CODA identifier for this incoming invoice.
-
-                        Optional because we don't want to insist that invoices are necessarily booked into Coda first,
-                        the approach varies by country.
+                    <xs:documentation>System identifier for this incoming invoice instance in Estatio.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="invoiceNumber" type="xs:string" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>The number by which the seller/supplier has identified the invoice.
+                    <xs:documentation>The number by which the seller/supplier has identified the invoice (corresponds
+                        to ref2 of summary line in Coda).
 
                         Although this is called a number, note that it could contain non-digit characters, so really
                         is just a string.
@@ -96,7 +84,7 @@
             </xs:element>
             <xs:element name="fixedAsset" type="com:oidDto" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Reference of the Property (fixed asset), eg &quot;CAR&quot;
+                    <xs:documentation>Identity of the Property (fixed asset) if any (eg &quot;CAR&quot;).
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -106,15 +94,15 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="buyerPartyReference" type="xs:string" minOccurs="1" maxOccurs="1">
+            <xs:element name="buyerParty" type="com:oidDto" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Party reference of the buyer (typically one of the ECP legal entities, eg &quot;IT01&quot;
+                    <xs:documentation>Identity of the party acting as the buyer (typically one of the ECP legal entities, eg &quot;IT01&quot;).
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="sellerPartyReference" type="xs:string" minOccurs="1" maxOccurs="1">
+            <xs:element name="sellerParty" type="com:oidDto" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Party reference of the seller (aka supplier), typically element 6 of CODA, eg &quot;ITCL12345&quot;.
+                    <xs:documentation>Identity of the party acting as the seller (aka supplier), typically element 6 of CODA, eg &quot;ITFO12345&quot;.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -136,15 +124,6 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="status" type="invoiceStatus" minOccurs="1" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>Status of this incoming invoice.
-
-                        This doesn't look right for an incoming invoice, but this is what we currently
-                        have in IncomingInvoice.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
             <xs:element name="receivedDate" type="xs:date" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Date that this invoice was received for processing.
@@ -154,26 +133,32 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="bankAccountReference" type="xs:string" minOccurs="0" maxOccurs="1">
+            <xs:element name="sellerBankAccount" type="com:oidDto" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Identifier for the seller/supplier's bank account, to pay into.
-
-                        This will (probably) be the IBAN.  Haven't dug into further because this is an optional
-                        property of IncomingInvoice, and the getDocument SOAP call (ie transaction client) does not
-                        provide us with anything we can use.
+                    <xs:documentation>Identity of the seller/supplier's bank account, to pay into.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="approvalStatus" type="incomingInvoiceApprovalStatus" minOccurs="0" maxOccurs="1">
+            <xs:element name="paymentStatus" type="incomingInvoicePaymentStatus" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Approval status of this incoming invoice.
+                    <xs:documentation>Payment status of this incoming invoice, inferred from its approval status.
 
-                        Although mandatory in the underlying IncomingInvoice entity, is defined as optional in this
-                        DTO because CODA does not know the status.
+                        The approval status itself is (for now) not exposed.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="items" type="incomingInvoiceItems" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="items" type="incomingInvoiceItems" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The list of individual invoice items.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="codaDocHead" type="com:oidDto" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Identity of the corresponding CodaDocHead entity.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
 
@@ -205,19 +190,10 @@
             </xs:element>
             <xs:element name="type" type="ord:incomingInvoiceTypeType" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Reference to the charge (aka &quot;work item type&quot;) of this invoice item.
+                    <xs:documentation>Reference to the cost centre of this invoice item.
 
-                        In the case of incoming invoices that originate from CODA, the work item type is inferred from
-                        ref5.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="charge" type="com:oidDto" minOccurs="1" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>Reference to the charge (aka &quot;work item type&quot;) of this invoice item.
-
-                        In the case of incoming invoices that originate from CODA, the work item type is inferred from
-                        ref5.
+                        In the case of incoming invoices that originate from CODA, is inferred from the
+                        analysis line account code (el5).
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -257,72 +233,51 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="codaPeriod" type="cancom:codaPeriod" minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>Date that this invoice item is booked to in Coda, if known.
-
-                        Note that this is not the same format string as the period property on the IncomingInvoice
-                        entity, but it encodes the same information.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
             <xs:element name="project" type="com:oidDto" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Reference to the project, if known.
+                    <xs:documentation>Identity of the project, if known.
 
                         In the case of incoming invoices that originate from CODA, the project is inferred from
-                        the final (4th) part of ref3, also stored redundantly in ref4.
+                        ext ref4 of the summary line.
+
+                        Only populated if there is precisely one orderItem linked to this incoming invoice item.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="order" type="com:oidDto" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Reference to the order, if known.
+                    <xs:documentation>Identity of the order, if known.
 
-                        In the case of incoming invoices that originate from CODA, the project is inferred from
-                        the first part of ref3.
+                        In the case of incoming invoices that originate from CODA, the order is inferred from
+                        the first part of ext ref3 of the summary line.
 
-                        Unlike the other elements, the order is not required to create an IncomingInvoiceItem.  But
-                        it's added here because the information _is_ known to CODA.  In the Estatio domain model, this
-                        information can be used to (a) upsert an appropriate order item if needed (for the same
-                        seller, property and project), and then (b) associate that order item with this invoice item
-                        (cf the OrderItem_createInvoiceItemLink mixin).
+                        Only populated if there is precisely one orderItem linked to this incoming invoice item.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="budgetItem" type="com:oidDto" minOccurs="0" maxOccurs="1">
+            <xs:element name="charge" type="com:oidDto" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Reference to the (service charge) budget item, if known.
+                    <xs:documentation>Identity of the associated charge.
+
+                        In the case of incoming invoices that originate from CODA, the charge is inferred from
+                        the ext ref5 (called instead &quot;work type&quot;).
+
+                        Only populated if there is precisely one orderItem linked to this incoming invoice item.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:simpleType name="invoiceStatus">
+    <xs:simpleType name="incomingInvoicePaymentStatus">
         <xs:annotation>
             <xs:documentation>
-                This doesn't look right for an incoming invoice, but this is what we currently have in IncomingInvoice
+                Estatio informs Coda of whether the incoming invoice can be paid; this is derived from whether
+                it has been approved.
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-            <xs:enumeration value="NEW"/>
-            <xs:enumeration value="APPROVED"/>
-            <xs:enumeration value="INVOICED"/>
-            <xs:enumeration value="HISTORIC"/>
-        </xs:restriction>
-    </xs:simpleType>
-
-    <xs:simpleType name="incomingInvoiceApprovalStatus">
-        <xs:annotation>
-            <xs:documentation>
-                This is intentionally a subset because we expect this to change in future.
-                For now, just focusing on the possible states that CODA might inform Estatio.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="NEW"/>
-            <xs:enumeration value="COMPLETED"/>
+            <xs:enumeration value="NOT_PAYABLE"/>
             <xs:enumeration value="PAYABLE"/>
             <xs:enumeration value="PAID"/>
         </xs:restriction>
