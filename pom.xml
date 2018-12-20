@@ -215,6 +215,7 @@
                                         <schemaInclude>financial/v2/bankAccount-2.0.xsd</schemaInclude>
                                         <schemaInclude>bankaccountsandmandates/v2/bankAccountsAndMandates-2.0.xsd</schemaInclude>
                                         <schemaInclude>invoice/v2/invoice-2.0.xsd</schemaInclude>
+                                        <schemaInclude>invoicenumbers/v2/invoicenumbers-2.0.xsd</schemaInclude>
                                         <schemaInclude>project/v2/project-2.0.xsd</schemaInclude>
                                         <schemaInclude>coda/v2/codadochead-2.0.xsd</schemaInclude>
                                         <schemaInclude>order/v2/order-2.0.xsd</schemaInclude>

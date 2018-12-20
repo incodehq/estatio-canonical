@@ -17,22 +17,22 @@
   specific language governing permissions and limitations
   under the License.
 -->
-<xs:schema targetNamespace="http://canonical.estatio.org/documents/v2"
+<xs:schema targetNamespace="http://canonical.estatio.org/invoicenumbers/v2"
            elementFormDefault="qualified"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns="http://canonical.estatio.org/documents/v2"
+           xmlns="http://canonical.estatio.org/invoicenumbers/v2"
            xmlns:com="http://isis.apache.org/schema/common"
 >
     <xs:import namespace="http://isis.apache.org/schema/common" schemaLocation="http://isis.apache.org/schema/common/common.xsd"/>
 
-    <xs:element name="documentsDto">
+    <xs:element name="invoiceNumbersDto">
         <xs:annotation>
             <xs:documentation>Represents v2.0 of this schema (as per majorVersion.minorVersion @default attribute, below).
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
             <xs:complexContent>
-                <xs:extension base="documentsType">
+                <xs:extension base="invoiceNumbersType">
                     <xs:sequence>
                         <xs:element name="majorVersion" type="xs:string" minOccurs="1" maxOccurs="1" default="2">
                             <xs:annotation>
@@ -52,71 +52,41 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="documentsType">
+    <xs:complexType name="invoiceNumbersType">
         <xs:sequence>
-            <xs:element name="documents" type="documents" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="invoiceNumbers" type="invoiceNumbers" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="documents">
+    <xs:complexType name="invoiceNumbers">
         <xs:sequence>
-            <xs:element name="document" type="documentType" minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="invoiceNumber" type="invoiceNumberType" minOccurs="0" maxOccurs="unbounded">
             </xs:element>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="documentType">
+    <xs:complexType name="invoiceNumberType">
         <xs:sequence>
             <xs:element name="self" type="com:oidDto" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>System identifier for this document instance in Estatio.
+                    <xs:documentation>System identifier for this (outgoing) invoice instance in Estatio.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1">
+            <xs:element name="invoiceDate" type="xs:date" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Name of this document, typically the filename.  For scanned incoming invoices, this may be the barcode.
+                    <xs:documentation>Date that this (outgoing) invoice was raised.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
-            <xs:element name="nature" type="documentNature" minOccurs="1" maxOccurs="1">
+            <xs:element name="invoiceNumber" type="xs:string" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Whether this is a blob or a clob.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="mimeType" type="xs:string" minOccurs="1" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>The mime type (also called content type) of this document.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="documentTypeReference" type="xs:string" minOccurs="1" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>Reference of the type of this document (the 'DocumentType' entity), for example 'PRELIM-LETTER', 'INVOICE', 'SUPPLIER-RECEIPT', 'TAX-REGISTER'
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="blobBytesBase64Encoded" type="xs:string" minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>If this document is a blob, then the bytes of the blob, base64 encoded.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="clobChars" type="xs:string" minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                    <xs:documentation>If this document is a clob, then its characters.
+                    <xs:documentation>Invoice number for this (outgoing) invoice.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:simpleType name="documentNature">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="BLOB"/>
-            <xs:enumeration value="CLOB"/>
-        </xs:restriction>
-    </xs:simpleType>
 
 </xs:schema>

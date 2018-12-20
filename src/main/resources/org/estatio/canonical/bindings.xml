@@ -89,6 +89,15 @@
         </jaxb:bindings>
     </jaxb:bindings>
 
+    <jaxb:bindings schemaLocation="invoicenumbers/v2/invoicenumbers-2.0.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.estatio.canonical.invoicenumbers.v2"/>
+        </jaxb:schemaBindings>
+        <jaxb:bindings>
+            <namespace:prefix name="invoicenumbers" />
+        </jaxb:bindings>
+    </jaxb:bindings>
+
     <jaxb:bindings schemaLocation="coda/v2/codadochead-2.0.xsd">
         <jaxb:schemaBindings>
             <jaxb:package name="org.estatio.canonical.coda.v2"/>
@@ -115,7 +124,6 @@
             <namespace:prefix name="order" />
         </jaxb:bindings>
     </jaxb:bindings>
-
 
     <jaxb:bindings schemaLocation="incominginvoice/v2/incominginvoice-2.0.xsd">
         <jaxb:schemaBindings>
