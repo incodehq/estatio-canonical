@@ -27,7 +27,7 @@
 
     <xs:element name="invoiceNumbersDto">
         <xs:annotation>
-            <xs:documentation>Represents v2.0 of this schema (as per majorVersion.minorVersion @default attribute, below).
+            <xs:documentation>Represents v2.1 of this schema (as per majorVersion.minorVersion @default attribute, below).
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
@@ -40,7 +40,7 @@
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
-                        <xs:element name="minorVersion" type="xs:string" minOccurs="1" maxOccurs="1" default="0">
+                        <xs:element name="minorVersion" type="xs:string" minOccurs="1" maxOccurs="1" default="1">
                             <xs:annotation>
                                 <xs:documentation>The minor version of the schema that an XML instance was created using.
                                 </xs:documentation>
@@ -82,6 +82,31 @@
             <xs:element name="invoiceNumber" type="xs:string" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>Invoice number for this (outgoing) invoice.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="invoiceYear" type="xs:int" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Year that this (outgoing) invoice was raised.
+                        Corresponds to the year portion of invoiceDate.
+
+                        Introduced in 2.1; optional only for backwards compatibility; will be populated.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="sellerReference" type="xs:int" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The reference of the organisation acting as the seller in this invoice, eg IT01.
+
+                        Introduced in 2.1; optional only for backwards compatibility; will be populated.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="buyerReference" type="xs:int" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The reference of the organisation acting as the buyer in this invoice, eg ITCL12345.
+
+                        Introduced in 2.1; optional only for backwards compatibility; will be populated.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
