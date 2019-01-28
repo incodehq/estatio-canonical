@@ -143,5 +143,14 @@
         </jaxb:bindings>
     </jaxb:bindings>
 
+    <jaxb:bindings schemaLocation="fixedasset/v2/fixedasset-2.0.xsd">
+        <jaxb:schemaBindings>
+            <jaxb:package name="org.estatio.canonical.fixedasset.v2"/>
+        </jaxb:schemaBindings>
+        <jaxb:bindings>
+            <namespace:prefix name="fixedasset" />
+        </jaxb:bindings>
+    </jaxb:bindings>
+
 
 </jaxb:bindings>
