@@ -542,4 +542,11 @@
         </profile>
     </profiles>
 
+    <distributionManagement>
+        <repository>
+            <id>gcpappenginerepo-deploy.serverId</id>
+            <url>https://repo.incode.work</url>
+        </repository>
+    </distributionManagement>
+
 </project>
