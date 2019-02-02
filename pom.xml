@@ -531,7 +531,7 @@
                 </property>
             </activation>
             <properties>
-                <appenginerepo-deploy.repositoryUrl>https://repo.incode.work</appenginerepo-deploy.repositoryUrl>
+                <gcpappenginerepo-deploy.repositoryUrl>https://repo.incode.work</gcpappenginerepo-deploy.repositoryUrl>
             </properties>
             <distributionManagement>
                 <repository>
