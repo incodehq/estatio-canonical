@@ -28,7 +28,7 @@ build-package-push:
           --batch-mode \
           clean deploy \
           -Dgcpappenginerepo-deploy \
-          -Dgcpappenginerepo-deploy.repositoryUrl=$GCPAPPENGINE_REPO_URL \
+          -DaltDeploymentRepository=gcpappenginerepo-deploy.serverId::default::$GCPAPPENGINE_REPO_URL \
           -Drevision=$REVISION \
           $CORE_ADDITIONAL_OPTS
 
