@@ -535,8 +535,8 @@
             </properties>
             <distributionManagement>
                 <repository>
-                    <id>appenginerepo-deploy.serverId</id>
-                    <url>${appenginerepo-deploy.repositoryUrl}</url>
+                    <id>gcpappenginerepo-deploy.serverId</id>
+                    <url>${gcpappenginerepo-deploy.repositoryUrl}</url>
                 </repository>
             </distributionManagement>
         </profile>
