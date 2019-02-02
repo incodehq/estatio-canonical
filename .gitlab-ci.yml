@@ -23,12 +23,13 @@ build-package-push:
   stage: build-package-push
   script:
     - echo "REVISION=$REVISION"
+    - echo "GCPAPPENGINE_REPO_URL=$GCPAPPENGINE_REPO_URL"
     - >
       mvn -s .m2/settings.xml \
           --batch-mode \
           clean deploy \
           -Dgcpappenginerepo-deploy \
-          -DaltDeploymentRepository=gcpappenginerepo-deploy.serverId::default::$GCPAPPENGINE_REPO_URL \
+          -DaltDeploymentRepository=gcpappenginerepo::default::$GCPAPPENGINE_REPO_URL \
           -Drevision=$REVISION \
           $CORE_ADDITIONAL_OPTS
 
