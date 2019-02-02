@@ -531,7 +531,7 @@
                 </property>
             </activation>
             <properties>
-                <gcpappenginerepo-deploy.repositoryUrl>https://repo.incode.work</gcpappenginerepo-deploy.repositoryUrl>
+                <gcpappenginerepo-deploy.repositoryUrl>https://my-gcp-project-id.appspot.com</gcpappenginerepo-deploy.repositoryUrl>
             </properties>
             <distributionManagement>
                 <repository>
