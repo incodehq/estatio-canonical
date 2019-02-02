@@ -521,6 +521,25 @@
                 </repository>
             </distributionManagement>
         </profile>
+
+        <!-- TODO: move up to incode-build ? -->
+        <profile>
+            <id>appenginerepo-deploy</id>
+            <activation>
+                <property>
+                    <name>appenginerepo-deploy</name>
+                </property>
+            </activation>
+            <properties>
+                <appenginerepo-deploy.repositoryUrl>https://repo.incode.work</appenginerepo-deploy.repositoryUrl>
+            </properties>
+            <distributionManagement>
+                <repository>
+                    <id>appenginerepo-deploy.serverId</id>
+                    <url>${appenginerepo-deploy.repositoryUrl}</url>
+                </repository>
+            </distributionManagement>
+        </profile>
     </profiles>
 
 </project>
