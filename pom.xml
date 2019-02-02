@@ -536,17 +536,11 @@
             <distributionManagement>
                 <repository>
                     <id>gcpappenginerepo-deploy.serverId</id>
-                    <url>${gcpappenginerepo-deploy.repositoryUrl}</url>
+                    <url>https://repo.incode.work</url>
                 </repository>
             </distributionManagement>
         </profile>
     </profiles>
 
-    <distributionManagement>
-        <repository>
-            <id>gcpappenginerepo-deploy.serverId</id>
-            <url>https://repo.incode.work</url>
-        </repository>
-    </distributionManagement>
 
 </project>

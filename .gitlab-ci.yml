@@ -27,10 +27,10 @@ build-package-push:
       mvn -s .m2/settings.xml \
           --batch-mode \
           clean deploy \
+          -Dgcpappenginerepo-deploy \
           -Drevision=$REVISION \
           $CORE_ADDITIONAL_OPTS
 
-#          -Dgcpappenginerepo-deploy \
 #          -Dgcpappenginerepo-deploy.repositoryUrl=$GCPAPPENGINE_REPO_URL \
 
 #    - >
