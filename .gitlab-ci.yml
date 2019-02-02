@@ -32,13 +32,11 @@ build-package-push:
           -Dgcpappenginerepo-deploy.repositoryUrl=$GCPAPPENGINEREPO_URL \
           -Drevision=$REVISION \
           $CORE_ADDITIONAL_OPTS
-
-
-#    - >
-#      mvn -s .m2/settings.xml \
-#          --batch-mode \
-#          clean deploy \
-#          -Drevision=$REVISION \
-#          -Dnexus-deploy \
-#          -Dnexus-deploy.repositoryUrl=$NEXUS_REPO_URL \
-#          $CORE_ADDITIONAL_OPTS
+    - >
+      mvn -s .m2/settings.xml \
+          --batch-mode \
+          clean deploy \
+          -Drevision=$REVISION \
+          -Dnexus-deploy \
+          -Dnexus-deploy.repositoryUrl=$NEXUS_REPO_URL \
+          $CORE_ADDITIONAL_OPTS
