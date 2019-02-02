@@ -524,10 +524,10 @@
 
         <!-- TODO: move up to incode-build ? -->
         <profile>
-            <id>appenginerepo-deploy</id>
+            <id>gcpappenginerepo-deploy</id>
             <activation>
                 <property>
-                    <name>appenginerepo-deploy</name>
+                    <name>gcpappenginerepo-deploy</name>
                 </property>
             </activation>
             <properties>
