@@ -122,8 +122,8 @@
     <properties>
         <revision>2.0.0-SNAPSHOT</revision>
 
-        <isis.version>1.16.2.20180705-2207-210fd1e3</isis.version>
-        <incode-platform.version>1.16.2.20180704-2126-e962fc24</incode-platform.version>
+        <isis.version>1.17.0</isis.version>
+        <incode-platform.version>1.17.0</incode-platform.version>
 
         <javafaker.version>0.5</javafaker.version>
         <lombok.version>1.18.0</lombok.version>

@@ -19,6 +19,21 @@ The http://github.com/isisaddons/isis-module-publishmq[Isis addons' publishmq] m
 
 == Change Log
 
+`2.2.0.yyyyMMdd-HHmm-shaId`::
+
+ECP-948: CodaDocHeads DTO
+
+
+`2.1.1.yyyyMMdd-HHmm-shaId`::
+
+ECP-936: Fixed Asset DTO
+
+
+`2.1.1.yyyyMMdd-HHmm-shaId`::
+
+ECP-904: Document list DTO
+
+
 `2.0.0-M1.yyyyMMdd-HHmm-shaId`::
 
 Switches to continuous releases via gitlab.com, published to `maven` repo on our own Sonatype Nexus @ https://repo.incode.cloud[repo.incode.cloud].
