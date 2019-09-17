@@ -125,7 +125,7 @@
         </jaxb:bindings>
     </jaxb:bindings>
 
-    <jaxb:bindings schemaLocation="incominginvoice/v2/incominginvoice-2.0.xsd">
+    <jaxb:bindings schemaLocation="incominginvoice/v2/incominginvoice-2.1.xsd">
         <jaxb:schemaBindings>
             <jaxb:package name="org.estatio.canonical.incominginvoice.v2"/>
         </jaxb:schemaBindings>

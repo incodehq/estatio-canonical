@@ -34,7 +34,7 @@
 
     <xs:element name="incomingInvoiceDto">
         <xs:annotation>
-            <xs:documentation>Represents v2.0 of this schema (as per majorVersion.minorVersion @default attribute, below).
+            <xs:documentation>Represents v2.1 of this schema (as per majorVersion.minorVersion @default attribute, below).
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
@@ -159,6 +159,20 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="descriptionSummary" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Summary description of this incoming invoice.
+                        Introduced in v2.1.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="barcode" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Barcode of the scanned paper document used to create this incoming invoice.
+                        Introduced in v2.1.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
 
@@ -263,6 +277,20 @@
                         the ext ref5 (called instead &quot;work type&quot;).
 
                         Only populated if there is precisely one orderItem linked to this incoming invoice item.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="property" type="com:oidDto" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Identity of the Property if any of the invoice item (eg &quot;CAR&quot;).
+                        Introduced in v2.1.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="propertyExternalReference" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The external reference (CODA) of the item's Property, if any of the invoice item (eg &quot;FRRHAV0&quot;).
+                        Introduced in v2.1.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
