@@ -34,7 +34,7 @@
 
     <xs:element name="incomingInvoiceDto">
         <xs:annotation>
-            <xs:documentation>Represents v2.1 of this schema (as per majorVersion.minorVersion @default attribute, below).
+            <xs:documentation>Represents v2.2 of this schema (as per majorVersion.minorVersion @default attribute, below).
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
@@ -47,7 +47,7 @@
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
-                        <xs:element name="minorVersion" type="xs:string" minOccurs="1" maxOccurs="1" default="0">
+                        <xs:element name="minorVersion" type="xs:string" minOccurs="1" maxOccurs="1" default="2">
                             <xs:annotation>
                                 <xs:documentation>The minor version of the schema that an XML instance was created using.
                                 </xs:documentation>
@@ -291,6 +291,13 @@
                 <xs:annotation>
                     <xs:documentation>The external reference (CODA) of the item's Property, if any of the invoice item (eg &quot;FRRHAV0&quot;).
                         Introduced in v2.1.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="reportedDate" type="xs:date" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Date that this invoice item was reported to CODA.
+                        Introduced in v2.2.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>

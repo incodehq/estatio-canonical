@@ -219,7 +219,7 @@
                                         <schemaInclude>project/v2/project-2.0.xsd</schemaInclude>
                                         <schemaInclude>coda/v2/codadochead-2.0.xsd</schemaInclude>
                                         <schemaInclude>order/v2/order-2.0.xsd</schemaInclude>
-                                        <schemaInclude>incominginvoice/v2/incominginvoice-2.1.xsd</schemaInclude>
+                                        <schemaInclude>incominginvoice/v2/incominginvoice-2.2.xsd</schemaInclude>
                                         <schemaInclude>documents/v2/documents-2.0.xsd</schemaInclude>
                                         <schemaInclude>fixedasset/v2/fixedasset-2.0.xsd</schemaInclude>
                                     </schemaIncludes>
