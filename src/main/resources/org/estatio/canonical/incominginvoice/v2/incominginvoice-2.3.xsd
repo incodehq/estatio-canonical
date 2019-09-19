@@ -34,7 +34,7 @@
 
     <xs:element name="incomingInvoiceDto">
         <xs:annotation>
-            <xs:documentation>Represents v2.2 of this schema (as per majorVersion.minorVersion @default attribute, below).
+            <xs:documentation>Represents v2.3 of this schema (as per majorVersion.minorVersion @default attribute, below).
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
@@ -47,7 +47,7 @@
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
-                        <xs:element name="minorVersion" type="xs:string" minOccurs="1" maxOccurs="1" default="2">
+                        <xs:element name="minorVersion" type="xs:string" minOccurs="1" maxOccurs="1" default="3">
                             <xs:annotation>
                                 <xs:documentation>The minor version of the schema that an XML instance was created using.
                                 </xs:documentation>
@@ -301,13 +301,19 @@
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="reversalStatus" type="incomingInvoiceItemReversalStatus" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Reversal status of this incoming invoice item.
+                        Introduced in v2.3.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
 
     <xs:simpleType name="incomingInvoicePaymentStatus">
         <xs:annotation>
-            <xs:documentation>
-                Estatio informs Coda of whether the incoming invoice can be paid; this is derived from whether
+            <xs:documentation>Estatio informs Coda of whether the incoming invoice can be paid; this is derived from whether
                 it has been approved.
             </xs:documentation>
         </xs:annotation>
@@ -318,5 +324,17 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="incomingInvoiceItemReversalStatus">
+        <xs:annotation>
+            <xs:documentation>Whether the item has been reversed or not.
+                Introduced in v2.3
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NOT_REVERSED"/>
+            <xs:enumeration value="REVERSED"/>
+            <xs:enumeration value="REVERSAL"/>
+        </xs:restriction>
+    </xs:simpleType>
 
 </xs:schema>
