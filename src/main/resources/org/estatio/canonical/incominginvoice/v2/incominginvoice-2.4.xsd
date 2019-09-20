@@ -34,7 +34,7 @@
 
     <xs:element name="incomingInvoiceDto">
         <xs:annotation>
-            <xs:documentation>Represents v2.3 of this schema (as per majorVersion.minorVersion @default attribute, below).
+            <xs:documentation>Represents v2.4 of this schema (as per majorVersion.minorVersion @default attribute, below).
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
@@ -170,6 +170,13 @@
                 <xs:annotation>
                     <xs:documentation>Barcode of the scanned paper document used to create this incoming invoice.
                         Introduced in v2.1.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="codaDocKey" type="cancom:codaDocKey" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The Coda transaction (identified by the cmpcode/doccode/docnum tuple) that was created from reporting/syncing this invoice.
+                        Introduced in v2.4.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
